@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="breadcrumb-wrap">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">News</a></li>
+            <li class="breadcrumb-item active">News details</li>
+        </ul>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Single News Start-->
+<div class="single-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="sn-container">
+                    <div class="sn-img">
+                        {% if post.photo %}
+                        <img src="{{ post.photo.url }}"/>
+                        {% else %}
+                        <img src="{% static 'img/a_gothica.jpg' %}"/>
+                        {% endif %}
+                    </div>
+                    <div class="sn-content">
+                        <p style="font-style: italic;">Автор:&nbsp;&nbsp;{{post.author.username}}</p>
+                        <hr>
+                        <p style="font-style: italic;">
+                            <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;{{post.views}}
+                        </p>
+                        <hr>
+                        <p style="font-style: italic;">Опубликовано:&nbsp;&nbsp;{{post.created|date:'Y-m-d'}}
+                            &nbsp;&nbsp;({{post.created|timesince}} назад)
+                        </p>
+                        <hr>
+
+
+                        {% if tags %}
+
+                        {% for tag in tags %}
+                        {% if forloop.first %}
+                        <ul class="list-inline">
+                            <li class="list-inline-item">тэги:</li>
+                            {% endif %}
+                            <li class="list-inline-item">
+                                <h6><a href="{{tag.get_absolute_url}}" style="font-weight: 600;">
+                                    <i class="fa fa-hashtag" aria-hidden="true"></i>{{tag|upper}}
+                                </a></h6>
+                            </li>&nbsp;
+                            {% if forloop.last %}
+                        </ul>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <hr>
+                        <br>
+
+
+                        <h1 class="sn-title">{{post.name_post}}</h1>
+                        <p>
+                            {{post.content|safe}}
+                        </p>
+                        <h3><a href="{% url 'civilopedia:change_post' post.slug %}">Редактировать</a></h3>
+                    </div>
+                </div>
+            </div>
+
+            {% include 'inc/_sidebar_tab_posts.html' %}
+
+        </div>
+    </div>
+</div>
+<!-- Single News End-->
+{% endblock %}

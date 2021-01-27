@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="contact">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="contact-form">
+                    <!---------------------------------------------------------------------------------------------------------->
+
+
+
+                    <!-------------------------------------------------------------------------------------------------------->
+
+
+                    <form action="." method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form.media}}
+
+                        {% include 'inc/_forms.html' %}
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

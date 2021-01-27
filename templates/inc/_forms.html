@@ -1,0 +1,79 @@
+<div class="form-group">
+
+    <label for="{{form.name.id_for_label}}"><h5>Название статьи</h5></label>
+    {{form.name_post}}
+    <div class="invalid-feedback">
+        {{form.name_post.errors}}
+    </div>
+</div>
+<br>
+<hr>
+<div class="form-group">
+
+    <label for="{{form.content.id_for_label}}"><h5>Статья</h5></label>
+    {{form.content}}
+    <div class="invalid-feedback">
+        {{form.content.errors}}
+    </div>
+</div>
+
+<br>
+<hr>
+
+<div class="form-group">
+
+    <label for="file"><i class="fa fa-2x fa-picture-o"
+                         aria-hidden="true"></i></label>
+    {{form.photo}}
+    <div class="invalid-feedback">
+        {{form.photo.errors}}
+    </div>
+</div>
+<br>
+<hr>
+<div class="form-group">
+
+    <label for="{{form.category.id_for_label}}"><h5>Выберите категорию</h5></label>
+    {{form.category}}
+    <div class="invalid-feedback">
+        {{form.category.errors}}
+    </div>
+</div>
+<br>
+<hr>
+
+
+<h5>Добавьте тэги</h5>
+<label>Добавляйте тэги через "#" без пробела.
+    Внутри тега между словами пробел ставить можно.</label>
+<div class="input-group mb-2">
+    <div class="input-group-prepend">
+        <div class="input-group-text">
+            <i class="fa fa-hashtag" aria-hidden="true"></i>
+        </div>
+    </div>
+
+    {{ form.name_tag }}
+</div>
+<br>
+
+<div class="form-group">
+
+    <label for="{{form.tags.id_for_label}}"><h5>Или выберите уже существующие</h5></label>
+    {{form.tags}}
+    <div class="invalid-feedback">
+        {{form.tags.errors}}
+    </div>
+</div>
+
+
+<br>
+
+
+<button name="direct_to" value='publish' class="btn" type="submit">
+    <i class="fa fa-file" aria-hidden="true"></i> &nbsp;опубликовать
+</button>
+&nbsp;&nbsp;&nbsp;
+<button name="direct_to" value="draft" class="btn" type="submit">
+    <i class="fa fa-file-o" aria-hidden="true"></i> &nbsp;поместить в черновик
+</button>

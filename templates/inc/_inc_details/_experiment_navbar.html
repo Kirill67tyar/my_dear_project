@@ -1,0 +1,59 @@
+<div class="nav-bar">
+    <div class="container">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a href="#" class="navbar-brand">MENU</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav mr-auto">
+                    <a href="{% url 'civilopedia:posts' %}" class="nav-item nav-link active">Home</a>
+
+
+                    <!--########################################################################################################-->
+                    <nav id="mainav" class="hoc clear">
+                        <!-- ################################################################################################ -->
+                        <ul class="clear">
+                            <li><a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">категории</a>
+                                <ul>
+                                    <li><a href="#">Level 2</a></li>
+                                    <li><a class="dropdown-item" href="#">Level 2 + Drop <i class="fa fa-caret-right"
+                                                                                            aria-hidden="true"></i></a>
+                                        <ul>
+                                            <li><a href="#" class="dropdown-item">Level 3</a></li>
+                                            <li><a href="#" class="dropdown-item">Level 3</a></li>
+                                            <li><a href="#" class="dropdown-item">Level 3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Level 2</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+
+
+                    <a href="{% url 'civilopedia:tags_page' %}" class="nav-item nav-link">
+                        <i class="fa fa-2x fa-hashtag" aria-hidden="true"></i>
+                    </a>
+
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                            Добавить</a>
+                        <div class="dropdown-menu">
+                            <a href="{% url 'civilopedia:add_post' %}" class="dropdown-item"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;статью</a>
+                            <a href="{% url 'civilopedia:add_tags' %}" class="dropdown-item"><i class="fa fa-hashtag" aria-hidden="true"></i>&nbsp;теги</a>
+                        </div>
+                    </div>
+
+
+                    {# include 'inc/_inc_details/_details_for_navbar/_navbar_user.html' #}
+                    {% include 'inc/_inc_details/_details_for_navbar/EXP_navbar_user.html' %}
+
+                </div>
+
+            </div>
+        </nav>
+    </div>
+</div>

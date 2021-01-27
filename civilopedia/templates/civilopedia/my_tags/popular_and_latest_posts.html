@@ -1,0 +1,45 @@
+{% load static %}
+
+<!-- ====================================популярные статьи =================-->
+<div id="popular" class="container tab-pane active">
+    {% for post in popular_posts %}
+
+    <div class="tn-news">
+        <div class="tn-img">
+            {% if post.photo %}
+            <img src="{{post.photo.url}}"/>
+            {% else %}
+            <img src="{% static 'img/a_gothica.jpg' %}"/>
+            {% endif %}
+        </div>
+        <div class="tn-title">
+            <a href="{{post.get_absolute_url}}">{{post.name_post|truncatewords_html:count_words}}</a>
+            <p><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;{{post.views}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- ====================================популярные статьи =================-->
+
+
+<!-- ====================================последние статьи =================-->
+<div id="latest" class="container tab-pane fade">
+    {% for post in latest_posts %}
+    <!-- здесь запускается цикл -->
+    <div class="tn-news">
+        <div class="tn-img">
+            {% if post.photo %}
+            <img src="{{post.photo.url}}"/>
+            {% else %}
+            <img src="{% static 'img/a_gothica.jpg' %}"/>
+            {% endif %}
+        </div>
+        <div class="tn-title">
+            <a href="{{post.get_absolute_url}}">{{post.name_post|truncatewords_html:count_words}}</a>
+            <p><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;{{post.views}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<!-- ====================================последние статьи =================-->
+

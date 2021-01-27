@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load my_filtres %}
+{% block title %}{{ user_name }}{% endblock %}
+
+{% block content %}
+<div class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div class="col-lg-12 col-md-6">
+                    <div class="footer-widget">
+                        <br>
+                        <h2><i class="fa fa-1x fa-id-card-o" aria-hidden="true"></i>&nbsp;ПРОФИЛЬ</h2>
+                        <hr>
+
+                        <h1 style="color: #FFD34E; font-weight: 600;" class="title">
+
+                            {{user_name}}
+                        </h1>
+                        <br>
+                        <div class="contact-info">
+                            <p>
+                                <i class="fa fa-file-o" aria-hidden="true"></i>
+                                Количество публикаций - {{number_of_publications}}
+                            </p>
+                            <p>
+                                <i class="fa fa-file" aria-hidden="true"></i>
+                                Количество работ в черновике - {{number_of_draft_publications}}
+                            </p>
+                            <p><i class="fa fa-files-o" aria-hidden="true"></i>
+                                Всего вместе работ - {{number_of_draft_publications|add:number_of_publications}}
+
+                            </p>
+
+                            <p><i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                Рейтинг просмотров статей - {{rating}}
+
+
+                                {% for star in 'stars' %}
+                                {% if forloop.counter <= rating %}
+
+                                <span style="color: #fed24d;" class="fa fa-star checked"></span>
+                                <!--                            <i style="color: #fed24d;" class="fa fa-star" aria-hidden="true"></i>-->
+
+
+                                {% elif 0.75 >= forloop.counter|subtract:rating %}
+
+                                <span style="color: #fed24d;" class="fa fa-star-half-o"></span>
+
+
+                                <!--                            <i style="color: #fed24d;" class="fa fa-star-half-o" aria-hidden="true"></i>-->
+
+                                {% else %}
+
+                                <span style="color: #fed24d;" class="fa fa-star-o"></span>
+
+                                <!--                            <i style="color: #fed24d;" class="fa fa-star-o" aria-hidden="true"></i>-->
+
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                            <p>
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                Количество просмотров всех статей - {{all_views_publications}}
+                            </p>
+
+
+
+
+
+
+                            <hr>
+                            <div class="social">
+                                Чистовик&nbsp;<a href="{% url 'accounts:published' %}"><i class="fa fa-file-o" aria-hidden="true"></i></a>&nbsp;
+                                Черновик&nbsp;
+                                <a href="{% url 'accounts:draft' %}"><i class="fa fa-file" aria-hidden="true"></i></a>&nbsp;
+                                Получить токен&nbsp;<a href=""><i class="fa fa-key" aria-hidden="true"></i></a>&nbsp;
+                                Отправить токен на почту&nbsp;
+                                <a href=""><i class="fa fa-envelope-o" aria-hidden="true"></i></a>&nbsp;
+
+                            </div>
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--  -----------------------------------SECOND VAR ------------------------------------->
+                <div class="block">
+                    <button class="btn" style="outline: none;">Теги, которые вы ипользовали в своих статьях</button>
+                    <div class="text" tabindex="0">
+
+                        {% if tags %}
+                        {% for tag in tags %}
+                        {% if forloop.first %}
+                        <ul class="list-inline">
+
+                            {% endif %}
+                            <li class="list-inline-item">
+                                <h6><a href="{% url 'civilopedia:posts_by_tag' tag.1 %}" style="font-weight: 600;">
+                                    <i class="fa fa-hashtag" aria-hidden="true"></i>{{tag.0|upper}}
+                                </a></h6>
+                            </li>&nbsp;
+                            {% if forloop.last %}
+                        </ul>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <!--  --------------------------------------------------------------------------------->
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

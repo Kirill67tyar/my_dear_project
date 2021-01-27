@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block content %}
+
+<div class="contact">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-md-8">
+                {% if user.is_authenticated %}
+
+                <h3>Вы уже авторизированы</h3>
+                <p>Для того, чтобы зайти под другим пользователем нужно сначала
+                    <a href="{% url 'accounts:logout' %}"><b>выйти</b></a>
+                </p>
+
+                {% else %}
+                <h1>Авторизация</h1>
+                <div class="contact-form">
+                    <form action="." method="POST">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary btn-block">Вход</button>
+                        </div>
+
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

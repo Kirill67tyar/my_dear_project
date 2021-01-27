@@ -1,0 +1,18 @@
+<div class="col-lg-{{col_lg}}">
+    <div class="sidebar">
+        <div class="sidebar-widget">
+            <h2 class="sw-title">{{count_tags}} самых популярных тегов</h2>
+            <div class="tags">
+                {% for tag in tags|dictsortreversed:'cnt'|slice:count_tags %}
+
+                <a href="{{tag.get_absolute_url}}">
+                    <i class="fa fa-hashtag" aria-hidden="true"></i>
+                    {{tag.name}} ({{tag.cnt}})
+                </a>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+
+<div class="contact">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+
+                <div class="contact-form">
+                    <h1>Регистрация</h1>
+                    <p>Если вы зарегистрированы, вы можете <a href="{% url 'accounts:login' %}">авторизироваться</a></p>
+                    <form action="." method="POST">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary btn-block">Регистрация</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

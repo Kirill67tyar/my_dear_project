@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+
+    {% if type_of_posts == 'draft' %}
+
+        Черновик
+
+    {% elif type_of_posts == 'published' %}
+
+        Чистовик
+
+    {% endif %}
+
+{% endblock %}
+
+{% block content %}
+<div class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                {% if type_of_posts == 'draft' %}
+                <h1>Ваш черновик {{user}}</h1><br>
+                {% elif type_of_posts == 'published' %}
+                <h1>Ваш чистовик {{user}}</h1><br>
+                {% endif %}
+
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th scope="col">
+                            <p>№</p>
+
+                        </th>
+                        <th scope="col">
+                            <p>ФОТО</p>
+
+                        </th>
+                        <th scope="col">
+                            <p>НАИМЕНОВАНИЕ СТАТЬИ</p>
+
+                        </th>
+                        <th scope="col">
+                            <p>КАТЕГОРИЯ</p>
+
+                        </th>
+                        <th scope="col">
+                            <p>СОЗДАН</p>
+
+                        </th>
+                        <th scope="col">
+                            <p>ИЗМЕНЕН</p>
+
+                        </th>
+                        <th scope="col">
+                            <p>РЕДАКТИРОВАТЬ</p>
+
+                        </th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    {% for post in page_obj %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+
+                        <td>
+
+                            {% if post.photo %}
+                            <img src="{{post.photo.url}}" class="cover"/>
+                            {% else %}
+                            <img src="{% static 'img/a_gothica.jpg' %}" class="cover"/>
+                            {% endif %}
+
+                        </td>
+                        <td><h5 style="color: #191919">{{post.name_post}}</h5></td>
+                        <td>{{post.category}}</td>
+                        <td>{{post.created|date:"d.m.y"}}</td>
+                        <td>{{post.updated|date:"d.m.y"}}</td>
+
+                        <td>
+                            <div class="social" style="text-align: right;">
+                                <a href="{% url 'civilopedia:change_post' post.slug %}" target="_blank">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <!--                                <a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>-->
+                            </div>
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_filtres %}
+
+{% block content %}
+<div class="single-news">
+
+    <div class="container">
+        <div class="row footer footer-bottom">
+
+            {% for pillar in data %}
+            {% if pillar|length > 1 %}
+            <div class="col-sm-2">
+                <div class="footer-widget">
+
+                    {% for elem in pillar %}
+                    {% if forloop.first %}
+                    <h3>
+                        <!--                    <span style="color: #fed24d; font-weight: 600; margin: 0;">-->
+                        {{elem|upper}}
+                        <!--                    </span>-->
+                    </h3>
+
+                    {% else %}
+                    <div class="copyright">
+                        <p><a href="{{elem.get_absolute_url}}">
+                            <!--                    <span style="color: #ffffff; font-weight: 600; margin: 0;">-->
+                            <i class="fa fa-hashtag" aria-hidden="true"></i>{{elem|upper}} ({{elem.cnt}})
+                            <!--                    </span>-->
+                        </a></p>
+                    </div>
+                    {% endif %}
+
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
